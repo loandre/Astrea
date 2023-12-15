@@ -39,7 +39,7 @@ export const LabelError = styled.label`
 `;
 
 export const ForgotPasswordLink = styled.a`
-  color: #003380;
+  color: #228BE6;
   text-decoration: none;
   cursor: pointer;
   font-size: 16px;
@@ -48,7 +48,7 @@ export const ForgotPasswordLink = styled.a`
   font-weight: bold;
   font-size: 12px;
   &:hover {
-    color: #0041a3; 
+    color: #55AAF5; 
   }
 `;
 
@@ -62,9 +62,9 @@ export const Strong = styled.strong`
 
   a {
     text-decoration: none;
-    color: #003380;
+    color: #228BE6;
     &:hover {
-    color: #0041a3; 
+    color: #63A8E4; 
   }
   }
 `;

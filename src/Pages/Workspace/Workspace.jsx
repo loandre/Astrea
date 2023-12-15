@@ -162,12 +162,12 @@ const Workspace = () => {
             <Button
               variant="contained"
               sx={{
-                bgcolor: "#003380",
+                bgcolor: "#228BE6",
                 textTransform: "none",
                 borderRadius: "7px",
                 padding: "8px 15px",
                 "&:hover": {
-                  bgcolor: "#0550c1",
+                  bgcolor: "#409AE9",
                   boxShadow: "none",
                 },
                 boxShadow: "none",

@@ -54,8 +54,8 @@ export const Strong = styled.strong`
   font-size: 12px;
   a {
     text-decoration: none;
-    color: #003380;
+    color: #228BE6;
     &:hover {
-    color: #0041a3; }
+    color: #52A8F3; }
   }
 `;
