@@ -6,8 +6,8 @@
 
 **IMPORTANTE: Para acessar a aplicação, utilize as seguintes credenciais:**
 
-- **Login:** betho@soffia.com
-- **Senha:** soffia
+- **Login:** loandre@email.com
+- **Senha:** 123456
 
 Este projeto é uma resposta ao desafio proposto pela empresa Madgic. O objetivo principal foi desenvolver uma interface que reproduza as funcionalidades das telas do sistema Astrea, utilizando React e integrando-o com a API fornecida pela empresa para leitura e alimentação de dados.
 

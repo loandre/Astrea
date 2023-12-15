@@ -114,8 +114,8 @@ const Section = ({ title, children, addAction, id }) => {
               padding: 0, 
               minWidth: 0,
               ml: 0, 
-              mb: -1,
-              mt: -0.9,
+              mb: 0,
+              mt: 0,
               cursor: 'pointer' 
             }}
           >
@@ -144,7 +144,7 @@ const Workspace = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: isMobile ? 'column' : 'row', mt: 0.5 }}>
       {/* Ajusta a margem superior do contêiner principal */}
-      <Box sx={{ flex: 3, mt: 0.5, ml: isMobile ? 0 : -2 }}>
+      <Box sx={{ flex: 3, mt: 0.5, ml: isMobile ? 0 : 0 }}>
         {/* Ajusta a margem superior e esquerda do contêiner esquerdo */}
         <Box
           sx={{
@@ -162,12 +162,12 @@ const Workspace = () => {
             <Button
               variant="contained"
               sx={{
-                bgcolor: "#003380",
+                bgcolor: "#228BE6",
                 textTransform: "none",
                 borderRadius: "7px",
                 padding: "8px 15px",
                 "&:hover": {
-                  bgcolor: "#0550c1",
+                  bgcolor: "#409AE9",
                   boxShadow: "none",
                 },
                 boxShadow: "none",
@@ -203,7 +203,7 @@ const Workspace = () => {
                 <SellIcon />
               </IconButton>
             </Tooltip>
-            {/* <Tooltip
+            <Tooltip
               arrow
               title="Ordenar..."
               PopperProps={{
@@ -228,8 +228,8 @@ const Workspace = () => {
               <IconButton>
                 <SortIcon />
               </IconButton>
-            </Tooltip> */}
-            {/* <Tooltip
+            </Tooltip>
+            <Tooltip
               arrow
               title="Imprimir"
               PopperProps={{
@@ -254,12 +254,12 @@ const Workspace = () => {
               <IconButton>
                 <PrintIcon />
               </IconButton>
-            </Tooltip> */}
+            </Tooltip>
           </Box>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
           <Button
-            endIcon={<ArrowDropDownIcon sx={{ ml: -0.5 }} />}
+            endIcon={<ArrowDropDownIcon sx={{ ml: 0 }} />}
             onClick={handleClick}
             sx={{
               fontWeight: 700,

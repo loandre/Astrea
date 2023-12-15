@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import SellIcon from "@mui/icons-material/Sell";
+import Header from "../../components/Header";
 import { createConsulting } from '../../services/consultingAPI';
 
 const Consulting = () => {
@@ -41,20 +42,12 @@ const Consulting = () => {
   };
 
   const handleSave = () => {
-    const userIds = [
-      "179d0b3e-b0ab-4369-b8b1-4056edcead50",
-      "2d181386-ed88-49f1-acb6-a9d26b19cdf0"  
-    ];
-
     const payload = {
       title: consultingData.title,
       subject: consultingData.subject,
-      users: userIds.map(id => ({ id }))
     };
 
-    const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZGNlNWY4LWNjMWItNGU4OC04OWZkLTEzYjU2YTM0MDQ3NCIsImVtYWlsIjoibWFlbGluYUBnbWFpbC5jb20iLCJpYXQiOjE3MDA0MjM5MjZ9.WuqMdTpwEc1MlF7pNw9yj2dlZxUA7B6PM-okY2tOJYo';
-
-    createConsulting(payload, token)
+    createConsulting(payload)
       .then(response => {
         console.log('Atendimento criado com sucesso:', response.data);
       })
@@ -63,23 +56,19 @@ const Consulting = () => {
       });
   };
 
-  // Define o estilo para os TextFields
-  const textFieldStyle = isMobile || isMediumScreen ? { width: '100%' } : { width: '50%' };
+  const textFieldStyle = { width: isMobile || isMediumScreen ? '100%' : '50%' };
 
   return (
-    <>
-      <Typography variant="h3" component="h1" sx={{ fontWeight: "590", flexGrow: 1, marginTop:  "10px", marginLeft: isMobile || isMediumScreen ? 0 : "-22px" }}>
-        Adicionar atendimento
-      </Typography>
-
-      <Box sx={{ flex: 3, mt: 0.9, ml: isMobile || isMediumScreen ? 0 : -2 }}>
-        <Box sx={{ marginBottom: '20px', marginTop:'60px'  }}>
+    <Box m="20px">
+      <Header title="Adicionar atendimento" subtitle="Gerencie e registre seus atendimentos" />
+      <Box sx={{ flex: 3, mt: 0.9 }}>
+        <Box sx={{ marginBottom: '20px', marginTop: '60px' }}>
           <Typography color="textPrimary">Clientes*</Typography>
           <TextField
             sx={textFieldStyle}
             placeholder="Digite o nome do cliente"
             name="title"
-            onChange={handleInputChange} 
+            onChange={handleInputChange}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -90,7 +79,7 @@ const Consulting = () => {
               ),
             }}
           />
-          <Typography sx={{ color: '#228BE6', cursor: 'pointer' }}>Adicionar cliente</Typography>
+          <Typography sx={{ color: '#228BE6', cursor: 'pointer', mt: 1 }}>Adicionar cliente</Typography>
         </Box>
 
         <Box sx={{ marginBottom: '20px' }}>
@@ -98,7 +87,7 @@ const Consulting = () => {
           <TextField
             sx={textFieldStyle}
             placeholder="Digite um título para o seu atendimento"
-            name="subject" 
+            name="subject"
             onChange={handleInputChange}
           />
         </Box>
@@ -146,18 +135,18 @@ const Consulting = () => {
           />
         </Box>
 
-        <Box sx={{ marginLeft: isMobile || isMediumScreen ? { width: '100%' } : { width: '50%' }  , display: 'flex', justifyContent: 'flex-end' }}>
-          <Button color="primary" sx={{ color: '#228BE6' }}>Cancelar</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, width: textFieldStyle.width }}>
+          <Button color="primary" sx={{ color: '#228BE6', mr: 2 }}>Cancelar</Button>
           <Button
             variant="contained"
             sx={{ backgroundColor: '#228BE6', '&:hover': { backgroundColor: '#206BA4' } }}
-            onClick={handleSave} // Chamar a função para enviar os dados quando clicar em "SALVAR"
+            onClick={handleSave}
           >
             SALVAR
           </Button>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

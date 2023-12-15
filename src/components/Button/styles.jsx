@@ -6,14 +6,15 @@ export const Button = styled.button`
   outline: none;
   border: none;
   border-radius: 8px;
-  width: calc(100% - 20px);
+  width: 100%; 
   cursor: pointer;
-  background-color: #003380; 
+  background-color: #228BE6; 
   color: white;
   font-weight: 600;
   font-size: 12px;
   margin-top: -15px;
+  box-sizing: border-box; 
   &:hover {
-    background-color: #0041a3; 
+    background-color: #449AE6; 
   }
 `;

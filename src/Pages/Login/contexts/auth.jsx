@@ -1,46 +1,46 @@
 import { createContext, useState, useEffect } from 'react';
-import apiServices from '../../../services/loginAPI'; 
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Novo estado para verificar o carregamento
+    const [loading, setLoading] = useState(true);
 
     // Verifica o localStorage para um token ao carregar o componente
     useEffect(() => {
         const storedToken = localStorage.getItem('user_token');
         if (storedToken) {
-            // Se um token é encontrado, atualiza o estado do usuário
             setUser({ token: storedToken });
         }
-        setLoading(false); // Atualiza o estado de carregamento após verificar o token
+        setLoading(false);
     }, []);
 
     // Função para realizar login
     const signin = async (email, password) => {
-      console.log("Tentando fazer login com:", { email, password }); 
-      try {
-          const data = await apiServices.login(email, password);
-          localStorage.setItem('user_token', data.token);
-          setUser(data);
-          return true;
-      } catch (error) {
-          console.log("Erro ao fazer login:", error.response?.data); 
-          return error.response?.data.message || 'Erro ao realizar login';
-      }
+        console.log("Tentando fazer login com:", { email, password });
+        
+        // Mock data for demonstration
+        const mockUserData = {
+            token: 'mock_token',
+            email: 'mock@example.com',
+            name: 'Mock User'
+        };
+
+        if (email === 'loandre@email.com' && password === '123456') {
+            localStorage.setItem('user_token', mockUserData.token);
+            setUser(mockUserData);
+            return true;
+        } else {
+            return 'Email ou senha incorretos';
+        }
     };
 
     // Função para realizar registro
     const signup = async (name, email, phone, password, rg, cpf, oab) => {
-      console.log("Tentando registrar com:", { name, email, phone, password, rg, cpf, oab });
-      try {
-          await apiServices.register(name, email, phone, password, rg, cpf, oab);
-          return true;
-      } catch (error) {
-          console.log("Erro ao fazer registro:", error.response?.data);
-          return error.response?.data.message || 'Erro ao realizar registro';
-      }
+        console.log("Tentando registrar com:", { name, email, phone, password, rg, cpf, oab });
+
+        // Mock registration logic
+        return true; // Assume registration is always successful
     };
 
     // Função para realizar logout
@@ -55,5 +55,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-
-// Exporte e continue usando o AuthProvider normalmente no seu aplicativo

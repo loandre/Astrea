@@ -6,34 +6,33 @@ import { AuthProvider } from "./Pages/Login/contexts/auth";
 import useAuth from "./Pages/Login/hooks/useAuth";
 
 // Componentes e Páginas
-import Footer from "./components/Footer/Footer";
-import Topbar from "./Pages/Global/Topbar/Topbar";
-import Sidebar from "./Pages/Global/Sidebar/Sidebar";
-import Workspace from "./Pages/Workspace/Workspace";
-import Calendar from "./Pages/Calendar/Calendar";
-import Contacts from "./Pages/Contacts/Contacts";
-import Consulting from "./Pages/Consulting/Consulting";
-import List from "./Pages/Consulting/List";
-import Folders from "./Pages/Folders/Folders";
-import Clippings from "./Pages/Clippings/Clippings";
-import Financial from "./Pages/Financial/Financial";
-import Documents from "./Pages/Documents/Documents";
-import Indicators from "./Pages/Indicators/Indicators";
-import Alerts from "./Pages/Alerts/Alerts";
-import Support from "./Pages/Support/Support";
-import SearchResult from "./Pages/SearchResult/SearchResult";
-import Admin from "./Pages/Admin/Admin";
-import Signin from "./Pages/Login/Signin/Signin";
-import Signup from "./Pages/Login/Signup/Signup";
-import Recover from "./Pages/Login/Recover/Recover";
+import Footer from "./components/Footer/";
+import Topbar from "./Pages/Global/Topbar/";
+import Sidebar from "./Pages/Global/Sidebar/";
+import Workspace from "./Pages/Workspace/";
+import Schedule from "./Pages/Schedule/";
+import Contacts from "./Pages/Contacts/";
+import Consulting from "./Pages/Consulting/";
+import List from "./Pages/Consulting/";
+import Folders from "./Pages/Folders/";
+import Clippings from "./Pages/Clippings/";
+import Financial from "./Pages/Financial/";
+import Documents from "./Pages/Documents/";
+import Indicators from "./Pages/Indicators/";
+import Alerts from "./Pages/Alerts/";
+import Support from "./Pages/Support/";
+import SearchResult from "./Pages/SearchResult/";
+import Admin from "./Pages/Admin/";
+import Signin from "./Pages/Login/Signin";
+import Signup from "./Pages/Login/Signup";
+import Recover from "./Pages/Login/Recover";
 
 // Componente PrivateRoute
 const PrivateRoute = ({ children, publicRoute = false }) => {
   const { signed, loading } = useAuth();
 
-  // Exibir um carregamento ou nada enquanto verifica o estado de autenticação
   if (loading) {
-    return <div>Carregando...</div>; // Ou seu componente de carregamento
+    return <div>Carregando...</div>;
   }
 
   if (publicRoute && signed) {
@@ -50,7 +49,7 @@ const RedirectToWorkspace = () => {
   const { signed, loading } = useAuth();
 
   if (loading) {
-    return <div>Carregando...</div>; // Ou seu componente de carregamento
+    return <div>Carregando...</div>;
   }
 
   return signed ? <Navigate to="/workspace" /> : <Signin />;
@@ -68,17 +67,18 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             {showTopbarAndSidebar && <Topbar setIsSidebar={setIsSidebar} />}
-            <Box sx={{ display: 'flex', flex: 1 }}>
+            <Box sx={{ display: 'flex', flex: 1, position: 'relative' }}>
               {showTopbarAndSidebar && <Sidebar isSidebar={isSidebar} />}
-              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+              <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', zIndex: 1 }}>
                 <Routes>
                   <Route path="/" element={<RedirectToWorkspace />} />
                   <Route path="/signup" element={<PrivateRoute publicRoute><Signup /></PrivateRoute>} />
                   <Route path="/recover" element={<PrivateRoute publicRoute><Recover /></PrivateRoute>} />
+                  <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
                   <Route path="/workspace" element={<PrivateRoute><Workspace /></PrivateRoute>} />
-                  <Route path="/calendar" element={<PrivateRoute><Calendar /></PrivateRoute>} />
+                  <Route path="/schedule" element={<PrivateRoute><Schedule /></PrivateRoute>} />
                   <Route path="/contacts" element={<PrivateRoute><Contacts /></PrivateRoute>} />
                   <Route path="/consulting" element={<PrivateRoute><Consulting /></PrivateRoute>} />
                   <Route path="/list" element={<PrivateRoute><List /></PrivateRoute>} />
@@ -95,7 +95,7 @@ function App() {
                 </Routes>
               </Box>
             </Box>
-            <Footer /> 
+            <Footer sx={{ mt: 'auto', zIndex: 0 }} />
           </Box>
         </ThemeProvider>
       </ColorModeContext.Provider>

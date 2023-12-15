@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
-import Input from "../../../components/Input/Input";
-import Button from "../../../components/Button/Button";
-import * as C from "./styles";
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
+import { Box, Typography, Link as MuiLink, Paper } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Login/hooks/useAuth";
 
@@ -34,9 +34,37 @@ const Signup = () => {
   }, [name, email, phone, password, rg, cpf, oab, signup, navigate]);
 
   return (
-    <C.Container>
-      <C.Content>
-        <C.Logo src="/assets/logo.png" alt="Logo" />
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="100vh"
+    >
+      <Paper
+        elevation={3}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: "15px",
+          width: "100%",
+          maxWidth: "415px",
+          padding: "40px",
+          borderRadius: "8px",
+        }}
+      >
+        <Box
+          component="img"
+          src="/assets/logo.png"
+          alt="Logo"
+          sx={{
+            width: "80%",
+            maxWidth: "300px",
+            marginBottom: "20px",
+          }}
+        />
         <Input
           type="text"
           placeholder="Nome completo"
@@ -79,16 +107,30 @@ const Signup = () => {
           value={oab}
           onChange={(e) => setOab(e.target.value)}
         />
-        <C.labelError>{error}</C.labelError>
+        <Typography variant="body2" color="error">{error}</Typography>
         <Button Text="INSCREVER-SE" onClick={handleSignup} />
-        <C.LabelSignin>
+        <Typography variant="body2" color="#676767">
           Já tem uma conta?
-          <C.Strong>
-            <Link to="/">&nbsp;ENTRE</Link>
-          </C.Strong>
-        </C.LabelSignin>
-      </C.Content>
-    </C.Container>
+          <MuiLink
+            component={Link}
+            to="/"
+            sx={{
+              color: "#228BE6",
+              textDecoration: "none",
+              cursor: "pointer",
+              fontSize: "12px",
+              fontWeight: "bold",
+              marginTop: "5px",
+              "&:hover": {
+                color: "#55AAF5",
+              },
+            }}
+          >
+            &nbsp;ENTRE
+          </MuiLink>
+        </Typography>
+      </Paper>
+    </Box>
   );
 };
 
